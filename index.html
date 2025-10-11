@@ -438,8 +438,10 @@
 
 <!-- Booking -->
 <section id="booking" class="spacious">
-  <div class="container">
-    <input type="hidden" name="date" id="currentDate">
+<div class="time-display">
+  <label for="currentDate">🕒 Thời gian gửi:</label>
+<input type="hidden" id="form_date" name="form_date">
+</div>
     <div class="section-title"><h2 style="margin:0">Đặt lịch ngay</h2></div>
     <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Điền thông tin để chúng tôi có thể liên hệ và tư vấn dịch vụ phù hợp</p>
     
@@ -512,12 +514,13 @@
       </div>
       
       <input type="hidden" name="date" id="currentDate">
-        <span class="btn-text">Đặt lịch ngay</span>
-        <span class="loading">
-          <div class="spinner"></div>
-          Đang gửi...
-        </span>
-      </button>
+<button type="submit" class="btn" id="submitBtn">
+  <span class="btn-text">Đặt lịch ngay</span>
+  <span class="loading">
+    <div class="spinner"></div>
+    Đang gửi...
+  </span>
+</button>
     </form>
   </div>
 </section>
@@ -754,7 +757,8 @@
               console.log('📧 Đang gửi email...');
               
               // Send via EmailJS
-              document.getElementById('currentDate').value = new Date().toLocaleString();
+              document.getElementById('form_date').value = new Date().toLocaleString();
+              
               const result = await emailjs.sendForm(
                   "service_x5jyntz",     // Service ID
                   "template_8jf79ei",     // Template ID - CẦN SỬA
