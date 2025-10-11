@@ -438,10 +438,8 @@
 
 <!-- Booking -->
 <section id="booking" class="spacious">
-<div class="time-display">
-  <label for="currentDate">🕒 Thời gian gửi:</label>
-<input type="hidden" id="form_date" name="form_date">
-</div>
+  <div class="container">
+    <input type="hidden" name="date" id="currentDate">
     <div class="section-title"><h2 style="margin:0">Đặt lịch ngay</h2></div>
     <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Điền thông tin để chúng tôi có thể liên hệ và tư vấn dịch vụ phù hợp</p>
     
@@ -514,13 +512,12 @@
       </div>
       
       <input type="hidden" name="date" id="currentDate">
-<button type="submit" class="btn" id="submitBtn">
-  <span class="btn-text">Đặt lịch ngay</span>
-  <span class="loading">
-    <div class="spinner"></div>
-    Đang gửi...
-  </span>
-</button>
+        <span class="btn-text">Đặt lịch ngay</span>
+        <span class="loading">
+          <div class="spinner"></div>
+          Đang gửi...
+        </span>
+      </button>
     </form>
   </div>
 </section>
@@ -588,7 +585,7 @@
 <script type="text/javascript">
   (function() {
       // Chỉ dùng Public Key
-      emailjs.init("0ROPDZWSe5IfD5x-5");  
+      emailjs.init("wx3Hzhhd6fYq7mQXm");  
   })();
 
   class BookingForm {
@@ -748,41 +745,47 @@
           this.hideAlerts();
           
           try {
-    // Kiểm tra EmailJS trước khi gửi
-    if (!this.checkEmailJS()) {
-        this.showError('EmailJS chưa sẵn sàng. Vui lòng tải lại trang.');
-        return;
-    }
-
-    console.log('📨 Đang gửi email...');
-
-    // Gán thời gian gửi thực tế
-    document.getElementById('form_date').value = new Date().toLocaleString();
-
-    // Gửi qua EmailJS
-    const result = await emailjs.sendForm(
-        "service_yg3eoqn",  // Service ID
-        "template_9x417dri", // Template ID
-        this.form
-    );
-
-    console.log('✅ Email đã gửi thành công:', result);
-    this.showSuccess('Đặt lịch thành công! Chúng tôi sẽ liên hệ lại với bạn trong vòng 24h.');
-    this.form.reset();
-
-    // Reset trạng thái input
-    document.querySelectorAll('.form-control').forEach(field => {
-        field.classList.remove('success', 'error');
-    });
-
-} catch (error) {
-    console.error('❌ Lỗi gửi email:', error);
-    let errorMessage = 'Có lỗi xảy ra khi gửi yêu cầu.';
-    if (error.status === 400) errorMessage = 'Thông tin không hợp lệ. Vui lòng kiểm tra lại.';
-    else if (error.status === 401) errorMessage = 'Lỗi xác thực EmailJS. Vui lòng liên hệ admin.';
-    else if (error.status === 403) errorMessage = 'Không có quyền gửi EmailJS.';
-    this.showError(errorMessage);
-}
+              // Kiểm tra EmailJS trước khi gửi
+              if (!this.checkEmailJS()) {
+                  this.showError('EmailJS chưa sẵn sàng. Vui lòng tải lại trang.');
+                  return;
+              }
+              
+              console.log('📧 Đang gửi email...');
+              
+              // Send via EmailJS
+              document.getElementById('currentDate').value = new Date().toLocaleString();
+              const result = await emailjs.sendForm(
+                  "service_x5jyntz",     // Service ID
+                  "template_8jf79ei",     // Template ID - CẦN SỬA
+                  this.form
+              );
+              
+              console.log('✅ Email đã gửi thành công:', result);
+              this.showSuccess('Đặt lịch thành công! Chúng tôi sẽ liên hệ lại với bạn trong vòng 24h.');
+              this.form.reset();
+              // Reset field states
+              document.querySelectorAll('.form-control').forEach(field => {
+                  field.classList.remove('success', 'error');
+              });
+              
+          } catch (error) {
+              console.error('❌ Lỗi gửi email:', error);
+              
+              // Hiển thị lỗi chi tiết hơn
+              let errorMessage = 'Có lỗi xảy ra khi gửi yêu cầu.';
+              
+              if (error.status === 400) {
+                  errorMessage = 'Thông tin không hợp lệ. Vui lòng kiểm tra lại.';
+              } else if (error.status === 401) {
+                  errorMessage = 'Lỗi xác thực EmailJS. Vui lòng liên hệ admin.';
+              } else if (error.status === 403) {
+                  errorMessage = 'Không có quyền gửi email. Vui lòng liên hệ admin.';
+              } else if (error.status === 404) {
+                  errorMessage = 'Không tìm thấy service EmailJS. Vui lòng liên hệ admin.';
+              } else if (error.status >= 500) {
+                  errorMessage = 'Lỗi server EmailJS. Vui lòng thử lại sau.';
+              }
               
               this.showError(errorMessage);
           } finally {
