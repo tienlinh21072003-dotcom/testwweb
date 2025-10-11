@@ -758,6 +758,7 @@
               
               // Send via EmailJS
               document.getElementById('currentDate').value = new Date().toLocaleString();
+              console.log("DEBUG date:", document.getElementById('currentDate').value);
               const result = await emailjs.sendForm(
                   "service_x5jyntz",     // Service ID
                   "template_8jf79ei",     // Template ID - CẦN SỬA
