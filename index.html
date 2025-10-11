@@ -439,6 +439,7 @@
 <!-- Booking -->
 <section id="booking" class="spacious">
   <div class="container">
+    <input type="hidden" name="date" id="currentDate">
     <div class="section-title"><h2 style="margin:0">Đặt lịch ngay</h2></div>
     <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Điền thông tin để chúng tôi có thể liên hệ và tư vấn dịch vụ phù hợp</p>
     
@@ -584,7 +585,7 @@
 <script type="text/javascript">
   (function() {
       // Chỉ dùng Public Key
-      emailjs.init("gBgjgiJEJEJoC033r");  
+      emailjs.init("wx3Hzhhd6fYq7mQXm");  
   })();
 
   class BookingForm {
@@ -646,7 +647,7 @@
           const field = document.getElementById('phone');
           const error = document.getElementById('phoneError');
           const value = field.value.trim();
-          const phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+          const phoneRegex = /^0[3|5|7|8|9][0-9]{8}$/;
           
           if (!value) {
               this.showFieldError(field, error, 'Vui lòng nhập số điện thoại');
@@ -654,6 +655,7 @@
           }
           
           if (!phoneRegex.test(value)) {
+              console.log('❌ Phone validation failed:', value, 'Regex:', phoneRegex);
               this.showFieldError(field, error, 'Số điện thoại không hợp lệ (VD: 0901234567)');
               return false;
           }
@@ -728,6 +730,12 @@
           const isPhoneValid = this.validatePhone();
           const isEmailValid = this.validateEmail();
           
+          console.log('🔍 Validation results:', {
+              fullName: isFullNameValid,
+              phone: isPhoneValid, 
+              email: isEmailValid
+          });
+          
           if (!isFullNameValid || !isPhoneValid || !isEmailValid) {
               this.showError('Vui lòng kiểm tra lại thông tin đã nhập');
               return;
@@ -746,9 +754,10 @@
               console.log('📧 Đang gửi email...');
               
               // Send via EmailJS
+              document.getElementById('currentDate').value = new Date().toLocaleString();
               const result = await emailjs.sendForm(
-                  "service_aog4yan",     // Service ID
-                  "gBgjgiJEJEJoC033r",   // Template ID
+                  "service_x5jyntz",     // Service ID
+                  "template_8jf79ei",     // Template ID - CẦN SỬA
                   this.form
               );
               
