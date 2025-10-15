@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Drinks - Spa La Tour</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C6A664;
+    }
+    .gold-text {
+      color: var(--gold);
+    }
+    .gold-border {
+      border-color: var(--gold);
+    }
+    .gold-bg {
+      background-color: var(--gold);
+    }
+    
+    /* Ensure form inputs have black text */
+    input, textarea, select {
+      color: #000 !important;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: #666 !important;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-6xl mx-auto p-4 flex items-center justify-between">
+      <a href="san.html" class="flex items-center">
+        <img src="tachnen.png" alt="Spa La Tour Logo" class="h-16">
+      </a>
+      <nav class="space-x-6 font-medium">
+        <a href="san.html" class="hover:text-[var(--gold)]">Home</a>
+        <a href="san.html#services" class="hover:text-[var(--gold)]">Services</a>
+        <a href="san.html#booking" class="hover:text-[var(--gold)]">Booking</a>
+        <a href="san.html#contact" class="hover:text-[var(--gold)]">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto p-6">
+    <!-- Breadcrumb -->
+    <nav class="mb-6" data-aos="fade-down">
+      <ol class="flex items-center space-x-2 text-sm text-gray-500">
+        <li><a href="san.html" class="hover:text-[var(--gold)]">Home</a></li>
+        <li>/</li>
+        <li><a href="san.html#services" class="hover:text-[var(--gold)]">Services</a></li>
+        <li>/</li>
+        <li class="text-[var(--gold)]">Free Drinks</li>
+      </ol>
+    </nav>
+
+    <!-- Service Header -->
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="text-6xl mb-4">☕</div>
+      <h1 class="text-4xl font-bold gold-text mb-4">Free Drinks</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Enjoy refreshing beverages and relax in a luxurious space
+      </p>
+    </div>
+
+    <!-- Drink Categories -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <!-- Hot Beverages -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="0">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Hot Beverages</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Black coffee/iced black coffee</li>
+          <li>• Cappuccino</li>
+          <li>• Latte</li>
+          <li>• Green tea/black tea</li>
+          <li>• Trà thảo mộc</li>
+          <li>• Hot chocolate</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+
+      <!-- Cold Beverages -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Cold Beverages</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Fresh fruit juice</li>
+          <li>• Smoothie trái cây</li>
+          <li>• Detox water</li>
+          <li>• Trà đá</li>
+          <li>• Mineral water</li>
+          <li>• Fresh coconut water</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+
+      <!-- Healthy Drinks -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Healthy Drinks</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Vegetable juice</li>
+          <li>• Trà gừng</li>
+          <li>• Honey lemon water</li>
+          <li>• Matcha green tea</li>
+          <li>• Celery juice</li>
+          <li>• Chamomile tea</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+
+      <!-- Special Drinks -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Special Drinks</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Fruit mocktail</li>
+          <li>• Mixed juice</li>
+          <li>• Milk tea</li>
+          <li>• Sinh tố protein</li>
+          <li>• Special detox water</li>
+          <li>• Seasonal beverages</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+
+      <!-- Snacks -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Snacks</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Cookies</li>
+          <li>• Fresh fruits</li>
+          <li>• Mini pastries</li>
+          <li>• Nuts</li>
+          <li>• Mini sandwiches</li>
+          <li>• Fruit salad</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+
+      <!-- Custom Orders -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="500">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Special Requests</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Sugar-free drinks</li>
+          <li>• Low-sugar drinks</li>
+          <li>• Caffeine-free options</li>
+          <li>• Custom drink requests</li>
+          <li>• Drinks for kids</li>
+          <li>• Diet-friendly options</li>
+        </ul>
+        <div class="text-lg font-bold gold-text">Free</div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="bg-white border gold-border rounded-lg p-8 mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold gold-text mb-6 text-center">Benefits of Our Beverage Service</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-4xl mb-3">🆓</div>
+          <h3 class="font-semibold mb-2">Completely free</h3>
+          <p class="text-gray-600 text-sm">Unlimited enjoyment</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-3">🌿</div>
+          <h3 class="font-semibold mb-2">Fresh & Natural</h3>
+          <p class="text-gray-600 text-sm">Fresh and natural ingredients</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-3">💆</div>
+          <h3 class="font-semibold mb-2">Relaxing</h3>
+          <p class="text-gray-600 text-sm">Creates a comfortable, relaxing vibe</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Info -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12" data-aos="fade-up">
+      <h3 class="text-lg font-semibold text-blue-800 mb-3">ℹ️ Service Information</h3>
+      <ul class="text-blue-700 space-y-2">
+        <li>• Free beverages for all customers</li>
+        <li>• Served throughout your visit</li>
+        <li>• Special drink requests available</li>
+        <li>• Complimentary snacks included</li>
+      </ul>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="bg-white border gold-border rounded-lg p-8 text-center" data-aos="fade-up">
+      <h2 class="text-2xl font-bold gold-text mb-4">Book and Enjoy Drinks</h2>
+      <p class="text-gray-600 mb-6">Experience our spa with complimentary drinks</p>
+      <a href="san.html#booking" class="px-8 py-3 gold-bg text-white font-semibold rounded-lg hover:opacity-90 transition">
+        Book Now
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <p>&copy; 2025 Spa La Tour. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once: true });
+  </script>
+</body>
+</html>

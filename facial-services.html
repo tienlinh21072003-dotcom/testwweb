@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facial Care Services - Spa La Tour</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C6A664;
+    }
+    .gold-text {
+      color: var(--gold);
+    }
+    .gold-border {
+      border-color: var(--gold);
+    }
+    .gold-bg {
+      background-color: var(--gold);
+    }
+    
+    /* Ensure form inputs have black text */
+    input, textarea, select {
+      color: #000 !important;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: #666 !important;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-6xl mx-auto p-4 flex items-center justify-between">
+      <a href="san.html" class="flex items-center">
+        <img src="tachnen.png" alt="Spa La Tour Logo" class="h-16">
+      </a>
+      <nav class="space-x-6 font-medium">
+        <a href="san.html" class="hover:text-[var(--gold)]">Home</a>
+        <a href="san.html#services" class="hover:text-[var(--gold)]">Services</a>
+        <a href="san.html#booking" class="hover:text-[var(--gold)]">Booking</a>
+        <a href="san.html#contact" class="hover:text-[var(--gold)]">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto p-6">
+    <!-- Breadcrumb -->
+    <nav class="mb-6" data-aos="fade-down">
+      <ol class="flex items-center space-x-2 text-sm text-gray-500">
+        <li><a href="san.html" class="hover:text-[var(--gold)]">Home</a></li>
+        <li>/</li>
+        <li><a href="san.html#services" class="hover:text-[var(--gold)]">Services</a></li>
+        <li>/</li>
+        <li class="text-[var(--gold)]">Facial Care</li>
+      </ol>
+    </nav>
+
+    <!-- Service Header -->
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="text-6xl mb-4">🌸</div>
+      <h1 class="text-4xl font-bold gold-text mb-4">Facial Care Services</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Professional facial therapies for youthful, radiant skin
+      </p>
+    </div>
+
+    <!-- Service Categories -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <!-- Basic Facial -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="0">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Basic Facial</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Deep cleansing</li>
+          <li>• Exfoliation</li>
+          <li>• Hydration</li>
+          <li>• Duration: 60 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$50</div>
+      </div>
+
+      <!-- Deep Cleansing -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Deep Cleansing</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Clear clogged pores</li>
+          <li>• Blackhead treatment</li>
+          <li>• Deep hydration</li>
+          <li>• Duration: 75 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$65</div>
+      </div>
+
+      <!-- Anti-Aging -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Anti-Aging</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Anti-aging serum</li>
+          <li>• Relaxing facial massage</li>
+          <li>• Premium hydration</li>
+          <li>• Duration: 90 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$80</div>
+      </div>
+
+      <!-- Hydrating Facial -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Hydrating Facial</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Deep hydration for dry skin</li>
+          <li>• Hydrating serum</li>
+          <li>• Relaxing massage</li>
+          <li>• Duration: 70 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$60</div>
+      </div>
+
+      <!-- Acne Treatment -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Acne Treatment</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Professional acne cleansing</li>
+          <li>• Inflammation treatment</li>
+          <li>• Hydration for acne-prone skin</li>
+          <li>• Duration: 85 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$75</div>
+      </div>
+
+      <!-- Luxury Facial -->
+      <div class="bg-white border gold-border rounded-lg p-6 shadow-sm transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="500">
+        <h3 class="text-xl font-semibold mb-3 gold-text">Luxury Facial</h3>
+        <ul class="space-y-2 text-gray-600 mb-4">
+          <li>• Premium products</li>
+          <li>• Intensive facial massage</li>
+          <li>• Comprehensive treatment</li>
+          <li>• Duration: 120 minutes</li>
+        </ul>
+        <div class="text-2xl font-bold gold-text">$120</div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="bg-white border gold-border rounded-lg p-8 mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold gold-text mb-6 text-center">Benefits of Facial Care</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-4xl mb-3">✨</div>
+          <h3 class="font-semibold mb-2">Brighter skin</h3>
+          <p class="text-gray-600 text-sm">Radiant and youthful skin</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-3">💆</div>
+          <h3 class="font-semibold mb-2">Relaxation</h3>
+          <p class="text-gray-600 text-sm">Relaxing massage reduces stress</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-3">🌿</div>
+          <h3 class="font-semibold mb-2">Natural</h3>
+          <p class="text-gray-600 text-sm">Natural and safe products</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skin Care Tips -->
+    <div class="bg-pink-50 border border-pink-200 rounded-lg p-6 mb-12" data-aos="fade-up">
+      <h3 class="text-lg font-semibold text-pink-800 mb-3">💡 Skin Care Tips at Home</h3>
+      <ul class="text-pink-700 space-y-2">
+        <li>• Cleanse twice daily with a suitable cleanser</li>
+        <li>• Use sunscreen every day</li>
+        <li>• Moisturize regularly</li>
+        <li>• Stay hydrated and sleep well</li>
+      </ul>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="bg-white border gold-border rounded-lg p-8 text-center" data-aos="fade-up">
+      <h2 class="text-2xl font-bold gold-text mb-4">Book Facial Care</h2>
+      <p class="text-gray-600 mb-6">Experience professional facials for beautiful skin</p>
+      <a href="san.html#booking" class="px-8 py-3 gold-bg text-white font-semibold rounded-lg hover:opacity-90 transition">
+        Book Now
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <p>&copy; 2025 Spa La Tour. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once: true });
+  </script>
+</body>
+</html>
