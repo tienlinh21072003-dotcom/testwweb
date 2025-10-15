@@ -164,11 +164,52 @@
     /* Ensure form inputs have black text */
     input, textarea, select {
       color: #000 !important;
+      background-color: #fff;
+      color-scheme: light; /* avoid iOS dark autofill inversion */
     }
     
     input::placeholder, textarea::placeholder {
       color: #666 !important;
     }
+    
+    /* Improve mobile visibility for date/time controls */
+    input[type="date"], input[type="time"] {
+      -webkit-appearance: none;
+      appearance: none;
+      min-height: 44px; /* comfortable tap target */
+      background-color: #fff;
+      color: #000;
+    }
+    input[type="date"]::-webkit-datetime-edit, 
+    input[type="time"]::-webkit-datetime-edit {
+      color: #000;
+      padding: 2px;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(0);
+      opacity: 0.7;
+    }
+    
+    /* Simple toast for mobile feedback */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      z-index: 9999;
+      font-size: 14px;
+      line-height: 1.2;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .toast.show { opacity: 1; }
     .gold-text {
       color: var(--gold);
     }
@@ -701,12 +742,19 @@
           <option>Lashes - Classic — $45</option>
         </select>
         <div class="grid grid-cols-2 gap-2">
-          <input type="date" class="border rounded px-3 py-2 text-black" />
-          <input type="time" class="border rounded px-3 py-2 text-black" />
+          <div>
+            <label class="block text-xs text-gray-600 mb-1">Date</label>
+            <input type="date" class="w-full border rounded px-3 py-2 text-black" />
+          </div>
+          <div>
+            <label class="block text-xs text-gray-600 mb-1">Time</label>
+            <input type="time" class="w-full border rounded px-3 py-2 text-black" />
+          </div>
         </div>
         <textarea placeholder="Notes" class="w-full border rounded px-3 py-2 text-black"></textarea>
-        <button class="w-full py-2 rounded gold-bg text-white font-medium hover:opacity-90">Confirm Booking</button>
+        <button type="submit" class="w-full py-2 rounded gold-bg text-white font-medium hover:opacity-90">Confirm Booking</button>
       </form>
+      <div id="bookingToast" class="toast" role="status" aria-live="polite"></div>
     </section>
   </main>
 
@@ -918,6 +966,14 @@
 
     // Booking form handler
     const bookingForm = document.querySelector('#booking form');
+    const bookingToast = document.getElementById('bookingToast');
+    function showToast(text) {
+      if (!bookingToast) return alert(text);
+      bookingToast.textContent = text;
+      bookingToast.classList.add('show');
+      setTimeout(() => bookingToast.classList.remove('show'), 3000);
+    }
+
     bookingForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -932,10 +988,10 @@
 
       emailjs.send("service_39679af", "template_g0wv46p", templateParams)
         .then(function(response) {
-          alert("✅ Booking sent successfully!");
+          showToast("✅ Booking sent successfully!");
           bookingForm.reset();
         }, function(error) {
-          alert("❌ Failed to send: " + error.text);
+          showToast("❌ Failed to send. Please try again.");
         });
     });
   </script>
