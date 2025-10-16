@@ -440,7 +440,7 @@
       <a href="#hero" class="hover:text-[var(--gold)]">Home</a>
       <a href="#services" class="hover:text-[var(--gold)]">Services</a>
       <a href="#gallery" class="hover:text-[var(--gold)]">Gallery</a>
-      <a href="#booking" class="hover:text-[var(--gold)]">Booking</a>
+      <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="hover:text-[var(--gold)]">Booking</a>
       <a href="#contact" class="hover:text-[var(--gold)]">Contact</a>
     </nav>
   </div>
@@ -460,7 +460,7 @@
     <p class="text-lg md:text-xl text-gray-100 mb-6">
       Experience luxurious space, absolute relaxation with our dedicated & professional team.
     </p>
-    <a href="#booking" 
+    <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" 
        class="px-6 py-3 rounded-lg gold-bg text-white font-semibold text-lg hover:opacity-90 transition">
        Book Now
     </a>
@@ -476,7 +476,7 @@
       <p class="text-gray-700 mb-4">Luxurious design, professional staff. Open: Mon - Fri: 9:30am - 7:00pm</p>
       <div class="flex gap-3">
         <a href="#services" class="px-4 py-2 rounded gold-bg text-white">View Prices</a>
-        <a href="#gallery" class="px-4 py-2 rounded gold-bg text-white"">Explore</a>
+        <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="px-4 py-2 rounded gold-bg text-white"">Book Now</a>
       </div>
     </div>
     <div class="w-64 h-40 bg-gray-100 rounded-lg flex items-center justify-center border gold-border" data-aos="zoom-in">
@@ -745,30 +745,12 @@
   </div>
 </section>
 
-    <!-- BOOKING -->
+    <!-- BOOKING (External) -->
     <section id="booking" class="max-w-xl mx-auto bg-white border gold-border p-6 rounded shadow-sm mb-12 section-glow">
       <h3 class="text-3xl font-semibold mb-4 gold-text text-center">Book an Appointment</h3>
-      <form class="space-y-3">
-        <input placeholder="Full name" class="w-full border rounded px-3 py-2 text-black" />
-        <input placeholder="Phone number" class="w-full border rounded px-3 py-2 text-black" />
-        <select class="w-full border rounded px-3 py-2 text-black">
-          <option>Nail - Basic Manicure — $25</option>
-          <option>Lashes - Classic — $45</option>
-        </select>
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-xs text-gray-600 mb-1">Date</label>
-            <input type="date" class="w-full border rounded px-3 py-2 text-black" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-600 mb-1">Time</label>
-            <input type="time" class="w-full border rounded px-3 py-2 text-black" />
-          </div>
-        </div>
-        <textarea placeholder="Notes" class="w-full border rounded px-3 py-2 text-black"></textarea>
-        <button type="submit" class="w-full py-2 rounded gold-bg text-white font-medium hover:opacity-90">Confirm Booking</button>
-      </form>
-      <div id="bookingToast" class="toast" role="status" aria-live="polite"></div>
+      <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="block w-full text-center py-3 rounded gold-bg text-white font-semibold hover:opacity-90">
+        Go to Booking Page
+      </a>
     </section>
   </main>
 
@@ -971,44 +953,7 @@
   });
 </script>
 
-  <!-- EmailJS Booking Integration -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    (function() {
-      emailjs.init("gBgjgiJEJEJoC033r"); // 🔹 Replace YOUR_PUBLIC_KEY with your real key
-    })();
-
-    // Booking form handler
-    const bookingForm = document.querySelector('#booking form');
-    const bookingToast = document.getElementById('bookingToast');
-    function showToast(text) {
-      if (!bookingToast) return alert(text);
-      bookingToast.textContent = text;
-      bookingToast.classList.add('show');
-      setTimeout(() => bookingToast.classList.remove('show'), 3000);
-    }
-
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const templateParams = {
-        full_name: bookingForm.querySelector('input[placeholder="Full name"]').value,
-        phone: bookingForm.querySelector('input[placeholder="Phone number"]').value,
-        service: bookingForm.querySelector('select').value,
-        date: bookingForm.querySelector('input[type="date"]').value,
-        time: bookingForm.querySelector('input[type="time"]').value,
-        notes: bookingForm.querySelector('textarea').value
-      };
-
-      emailjs.send("service_39679af", "template_g0wv46p", templateParams)
-        .then(function(response) {
-          showToast("✅ Booking sent successfully!");
-          bookingForm.reset();
-        }, function(error) {
-          showToast("❌ Failed to send. Please try again.");
-        });
-    });
-  </script>
+  
 </body>
 </html>
   
