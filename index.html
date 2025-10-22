@@ -723,6 +723,52 @@
       transform: scale(1.1);
     }
     
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      /* Ensure tap targets are at least 44x44px */
+      a, button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      /* Better touch feedback */
+      .service-card:active {
+        transform: scale(0.97);
+      }
+      
+      .gallery-item:active {
+        transform: scale(0.95);
+      }
+      
+      /* Prevent text selection on touch */
+      .service-card, .gallery-item {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Reduce animations on mobile for better performance */
+      .floating-bg {
+        animation: none;
+      }
+    }
+    
+    /* Mobile menu animation */
+    #mobileMenu {
+      transition: all 0.3s ease-in-out;
+      max-height: 0;
+      overflow: hidden;
+    }
+    
+    #mobileMenu:not(.hidden) {
+      max-height: 500px;
+    }
+    
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -774,14 +820,34 @@
 <header class="absolute top-0 left-0 w-full z-20 bg-transparent">
   <div class="max-w-6xl mx-auto p-4 flex items-center justify-between text-white">
     <div>
-      <img src="tachnen.png" alt="Spa La Tour Logo" class="h-24">
+      <img src="tachnen.png" alt="Spa La Tour Logo" class="h-16 md:h-24">
     </div>
-    <nav class="space-x-6 font-medium">
+    
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex space-x-6 font-medium">
       <a href="#hero" class="hover:text-[var(--gold)]">Home</a>
       <a href="#services" class="hover:text-[var(--gold)]">Services</a>
       <a href="#gallery" class="hover:text-[var(--gold)]">Gallery</a>
       <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="hover:text-[var(--gold)]">Booking</a>
       <a href="https://duongnguyen1.glossgenius.com/contact" target="_blank" rel="noopener" class="hover:text-[var(--gold)]">Contact</a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-black/95 backdrop-blur-lg">
+    <nav class="flex flex-col p-6 space-y-4 font-medium text-lg">
+      <a href="#hero" class="hover:text-[var(--gold)] py-2 border-b border-gray-700" onclick="closeMobileMenu()">Home</a>
+      <a href="#services" class="hover:text-[var(--gold)] py-2 border-b border-gray-700" onclick="closeMobileMenu()">Services</a>
+      <a href="#gallery" class="hover:text-[var(--gold)] py-2 border-b border-gray-700" onclick="closeMobileMenu()">Gallery</a>
+      <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="hover:text-[var(--gold)] py-2 border-b border-gray-700">Booking</a>
+      <a href="https://duongnguyen1.glossgenius.com/contact" target="_blank" rel="noopener" class="hover:text-[var(--gold)] py-2">Contact</a>
     </nav>
   </div>
 </header>
@@ -795,35 +861,43 @@
   <div class="absolute inset-0 bg-black bg-opacity-20"></div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-2xl px-6" data-aos="fade-up">
-    <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 shadow-2xl">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 gold-text">Welcome to Spa La Tour</h1>
-      <p class="text-lg md:text-xl text-white mb-6">
+  <div class="relative z-10 max-w-2xl px-4 md:px-6" data-aos="fade-up">
+    <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl">
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-3 md:mb-4 gold-text">
+        <span class="text-4xl md:text-5xl">Welcome to</span><br>
+        <span class="text-3xl md:text-5xl">Spa La Tour</span>
+      </h1>
+      <p class="text-base md:text-xl text-white mb-4 md:mb-6">
         Experience luxurious space, absolute relaxation with our dedicated & professional team.
       </p>
     <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" 
-       class="luxury-btn px-8 py-4 rounded-lg text-white font-semibold text-lg inline-block">
+       class="luxury-btn px-6 md:px-8 py-3 md:py-4 rounded-lg text-white font-semibold text-base md:text-lg inline-block">
        Book Now
     </a>
     </div>
   </div>
 </section>
 
-  <main class="max-w-6xl mx-auto p-6">
+  <main class="max-w-6xl mx-auto p-4 md:p-6">
     <!-- HOME -->
-<section id="home" class="bg-white glow-border rounded-xl p-8 shadow-2xl mb-10 elegant-section" data-aos="fade-up">
+<section id="home" class="bg-white glow-border rounded-xl p-4 md:p-8 shadow-2xl mb-10 elegant-section" data-aos="fade-up">
   <div class="flex flex-col md:flex-row items-center gap-6">
-    <div class="flex-1" data-aos="fade-right">
-      <h2 class="text-4xl font-extrabold mb-2 gold-text">Welcome to Nail & Lashes Spa La Tour</h2>
-      <p class="text-gray-700 mb-4">Luxurious design, professional staff. Open: Mon - Fri: 9:30am - 7:00pm</p>
-      <div class="flex gap-3">
-        <a href="#services" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold">View Prices</a>
-        <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold">Book Now</a>
+    <div class="flex-1 w-full" data-aos="fade-right">
+      <h2 class="text-2xl md:text-4xl font-extrabold mb-3 gold-text">Welcome to Nail & Lashes Spa La Tour</h2>
+      <p class="text-gray-700 mb-4 text-sm md:text-base leading-relaxed">
+        Luxurious design, professional staff.<br class="md:hidden">
+        <span class="block mt-2 md:inline md:mt-0">Open: Mon - Fri: 9:30am - 7:00pm</span><br class="md:hidden">
+        <span class="block md:inline">Saturday: 9:00am - 7:00pm</span><br class="md:hidden">
+        <span class="block md:inline">Sunday: 11:00am - 5:00pm</span>
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="#services" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold text-center text-sm md:text-base">View Prices</a>
+        <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold text-center text-sm md:text-base">Book Now</a>
       </div>
     </div>
-    <div class="w-64 h-40 bg-gray-100 rounded-lg flex items-center justify-center border gold-border" data-aos="zoom-in">
-      <div class="text-center">
-        <img src="logo.jpg" alt="Logo" class="mx-auto h-24 mb-2">
+    <div class="w-full md:w-96 h-48 md:h-64 bg-gray-100 rounded-lg flex items-center justify-center border gold-border cursor-pointer hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95" data-aos="zoom-in" onclick="openImage('card.jpg')">
+      <div class="text-center w-full h-full flex items-center justify-center p-2">
+        <img src="card.jpg" alt="Business Card" class="max-w-full max-h-full object-contain rounded-lg">
       
       </div>
     </div>
@@ -832,91 +906,91 @@
 
     <!-- SERVICES -->
     <section id="services" class="mb-12">
-      <h3 class="text-4xl font-bold mb-8 gold-text text-center">Our Premium Services</h3>
+      <h3 class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 gold-text text-center">Our Premium Services</h3>
       
       <!-- First row - 4 items -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-        <a href="nail-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up">
-          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6">
+        <a href="nail-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up">
+          <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
             <img src="nail1.jpg" alt="Manicure" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-bold text-xl mb-2 gold-text">Manicure</h4>
-          <p class="text-sm">Professional manicure</p>
+          <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Manicure</h4>
+          <p class="text-xs md:text-sm">Professional manicure</p>
         </a>
         
-        <a href="pedicure-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="100">
-          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+        <a href="pedicure-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
             <img src="nailchan.jpg" alt="Pedicure" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-bold text-xl mb-2 gold-text">Pedicure</h4>
-          <p class="text-sm">Relaxing pedicure</p>
+          <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Pedicure</h4>
+          <p class="text-xs md:text-sm">Relaxing pedicure</p>
         </a>
         
-        <a href="kids-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="200">
-          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+        <a href="kids-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
             <img src="embe.jpg" alt="Kids Services" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-bold text-xl mb-2 gold-text">Kids Services</h4>
-          <p class="text-sm">Care for children</p>
+          <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Kids Services</h4>
+          <p class="text-xs md:text-sm">Care for children</p>
         </a>
         
-        <a href="nail-care-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="300">
-          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+        <a href="nail-care-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
             <img src="duongmong.jpg" alt="Nail Care" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-bold text-xl mb-2 gold-text">Nail Care</h4>
-          <p class="text-sm">Deep nail care</p>
+          <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Nail Care</h4>
+          <p class="text-xs md:text-sm">Deep nail care</p>
         </a>
       </div>
       
       <!-- Second row - 3 centered items -->
       <div class="flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-          <a href="hair-removal-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="400">
-            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 max-w-4xl w-full">
+          <a href="hair-removal-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="400">
+            <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
               <img src="taylong.jpg" alt="Hair Removal" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-bold text-xl mb-2 gold-text">Hair Removal</h4>
-            <p class="text-sm">Hair removal therapy</p>
+            <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Hair Removal</h4>
+            <p class="text-xs md:text-sm">Hair removal therapy</p>
           </a>
           
-          <a href="eyelash-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="500">
-            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+          <a href="eyelash-services.html" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="500">
+            <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
               <img src="noimi.jpg" alt="Eyelash Extensions" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-bold text-xl mb-2 gold-text">Eyelash Extensions</h4>
-            <p class="text-sm">Professional eyelash service</p>
+            <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Eyelash Extensions</h4>
+            <p class="text-xs md:text-sm">Professional eyelash service</p>
           </a>
           
-          <a href="javascript:void(0)" onclick="openImage('drink.jpg')" class="service-card p-6 border gold-border rounded-xl text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="600">
-            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+          <a href="javascript:void(0)" onclick="openImage('drink.jpg')" class="service-card p-3 md:p-6 border gold-border rounded-xl text-center group cursor-pointer col-span-2 md:col-span-1" data-aos="fade-up" data-aos-delay="600">
+            <div class="relative w-full aspect-square mb-2 md:mb-4 rounded-xl flex items-center justify-center overflow-hidden">
               <img src="drink.jpg" alt="Drinks" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-bold text-xl mb-2 gold-text">Drinks</h4>
-            <p class="text-sm">Fresh beverages</p>
+            <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 gold-text">Drinks</h4>
+            <p class="text-xs md:text-sm">Fresh beverages</p>
           </a>
         </div>
       </div>
     </section>
 
     <!-- MENU -->
-<section id="menu" class="container mx-auto py-16 px-4" data-aos="fade-up">
-  <h2 class="text-4xl font-bold text-center gold-text mb-12">Service Price List</h2>
-  <div class="grid md:grid-cols-2 gap-10">
+<section id="menu" class="container mx-auto py-8 md:py-16 px-4" data-aos="fade-up">
+  <h2 class="text-2xl md:text-4xl font-bold text-center gold-text mb-6 md:mb-12">Service Price List</h2>
+  <div class="grid md:grid-cols-2 gap-6 md:gap-10">
     <div data-aos="zoom-in" class="group">
       <div class="glow-border rounded-2xl overflow-hidden">
         <img 
@@ -937,13 +1011,13 @@
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="container mx-auto py-16 px-4" data-aos="fade-up">
-  <h2 class="text-4xl font-bold text-center gold-text mb-12">Image Gallery</h2>
+<section id="gallery" class="container mx-auto py-8 md:py-16 px-4" data-aos="fade-up">
+  <h2 class="text-2xl md:text-4xl font-bold text-center gold-text mb-6 md:mb-12">Image Gallery</h2>
   
   <!-- Nail Art Gallery -->
-  <div class="mb-16">
-    <h3 class="text-3xl font-semibold gold-text mb-8 text-center">Nail Art - Fingernails</h3>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+  <div class="mb-8 md:mb-16">
+    <h3 class="text-xl md:text-3xl font-semibold gold-text mb-4 md:mb-8 text-center">Nail Art - Fingernails</h3>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
       <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail1.jpg')">
         <img src="nail1.jpg" alt="Nail Art 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
       </div>
@@ -979,8 +1053,8 @@
 
   <!-- Pedicure Gallery -->
   <div>
-    <h3 class="text-2xl font-semibold gold-text mb-6 text-center">Pedicure - Toenails</h3>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+    <h3 class="text-xl md:text-2xl font-semibold gold-text mb-4 md:mb-6 text-center">Pedicure - Toenails</h3>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
       <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan1.jpg')">
         <img src="chan1.jpg" alt="Pedicure 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
       </div>
@@ -1014,24 +1088,24 @@
     </div>
   </div>
     <!-- Studio -->
-    <div class="bg-gradient-to-br from-[var(--gold)]/10 to-[var(--gold)]/5 rounded-2xl p-8 mb-12">
-      <h3 class="text-3xl font-bold gold-text mb-8 text-center">🏪 Studio Photos</h3>
-      <p class="text-center text-white mb-8 max-w-2xl mx-auto">
+    <div class="bg-gradient-to-br from-[var(--gold)]/10 to-[var(--gold)]/5 rounded-2xl p-4 md:p-8 mb-8 md:mb-12">
+      <h3 class="text-xl md:text-3xl font-bold gold-text mb-4 md:mb-8 text-center">🏪 Studio Photos</h3>
+      <p class="text-center text-white mb-6 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">
         The luxurious and modern space of Spa La Tour — where you are cared for to the highest standards
       </p>
       
       <!-- Main Studio Image -->
-      <div class="mb-8">
+      <div class="mb-6 md:mb-8">
         <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-lg" onclick="openImage('tiemnail12.jpg')">
           <img src="tiemnail12.jpg" alt="Main studio space" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400 text-lg\'>Main studio photo</div>'">
         </div>
       </div>
       
       <!-- Studio Gallery Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         <!-- Reception Area -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">Reception Area</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">Reception Area</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail11.jpg')">
             <img src="tiemnail11.jpg" alt="Reception Area" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Reception Area</div>'">
           </div>
@@ -1039,7 +1113,7 @@
         
         <!-- Nail Station -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">Nail Stations</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">Nail Stations</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail10.jpg')">
             <img src="tiemnail10.jpg" alt="Nail Stations" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Nail Stations</div>'">
           </div>
@@ -1047,7 +1121,7 @@
         
         <!-- Pedicure Area -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">Pedicure Area</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">Pedicure Area</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail5.jpg')">
             <img src="tiemnail5.jpg" alt="Pedicure Area" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Pedicure Area</div>'">
           </div>
@@ -1055,7 +1129,7 @@
         
         <!-- Facial Room -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">Facial Room</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">Facial Room</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail8.jpg')">
             <img src="tiemnail8.jpg" alt="Facial Room" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Facial Room</div>'">
           </div>
@@ -1063,7 +1137,7 @@
         
         <!-- Relaxation Area -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">Relaxation Area</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">Relaxation Area</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail4.jpg')">
             <img src="tiemnail4.jpg" alt="Relaxation Area" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Relaxation Area</div>'">
           </div>
@@ -1071,7 +1145,7 @@
         
         <!-- Equipment -->
         <div class="group">
-          <h4 class="text-lg font-semibold gold-text mb-3 text-center">🔧 Professional Equipment</h4>
+          <h4 class="text-base md:text-lg font-semibold gold-text mb-2 md:mb-3 text-center">🔧 Professional Equipment</h4>
           <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-md" onclick="openImage('tiemnail4.jpg')">
             <img src="tiemnail4.jpg" alt="Professional Equipment" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Equipment</div>'">
           </div>
@@ -1079,9 +1153,9 @@
       </div>
       
       <!-- Additional Studio Images -->
-      <div class="mt-8">
-        <h4 class="text-xl font-semibold gold-text mb-6 text-center">📸 More Studio Photos</h4>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="mt-6 md:mt-8">
+        <h4 class="text-lg md:text-xl font-semibold gold-text mb-4 md:mb-6 text-center">📸 More Studio Photos</h4>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('tiemnail1.jpg')">
             <img src="tiemnail1.jpg" alt="Studio Photo 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
           </div>
@@ -1100,16 +1174,16 @@
 </section>
 
     <!-- BOOKING (External) -->
-    <section id="booking" class="max-w-xl mx-auto bg-white border gold-border p-6 rounded shadow-sm mb-12 section-glow">
-      <h3 class="text-3xl font-semibold mb-4 gold-text text-center">Book an Appointment</h3>
-      <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="block w-full text-center py-3 rounded gold-bg text-white font-semibold hover:opacity-90">
+    <section id="booking" class="max-w-xl mx-auto bg-white border gold-border p-4 md:p-6 rounded shadow-sm mb-8 md:mb-12 section-glow">
+      <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 gold-text text-center">Book an Appointment</h3>
+      <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="block w-full text-center py-3 md:py-4 rounded gold-bg text-white font-semibold hover:opacity-90 text-sm md:text-base">
         Go to Booking Page
       </a>
     </section>
   </main>
 
 <!-- FOOTER -->
-<footer class="relative bg-black text-gray-300 pt-12 pb-6 mt-16 w-full">
+<footer class="relative bg-black text-gray-300 pt-8 md:pt-12 pb-6 mt-8 md:mt-16 w-full">
   <!-- Background image -->
   <div class="absolute inset-0">
     <img src="nencuoi.png" alt="Background" class="w-full h-full object-cover">
@@ -1117,12 +1191,12 @@
   </div>
 
   <!-- Footer content full width -->
-  <div class="relative z-10 w-full px-12 grid md:grid-cols-3 gap-10 text-left">
+  <div class="relative z-10 w-full px-4 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-left">
     
     <!-- Logo + introduction -->
     <div>
-      <img src="tachnen.png" alt="Spa La Tour Logo" class="h-20 mb-4">
-      <p class="text-sm leading-relaxed">
+      <img src="tachnen.png" alt="Spa La Tour Logo" class="h-16 md:h-20 mb-4">
+      <p class="text-xs md:text-sm leading-relaxed">
         SPA LA TOUR - It's not your normal beauty salon. We are proud to bring this first-ever concept to our clients and beauty artists: SATISFACTION GUARANTEED. Love your beauty care or let us know. We'll always make it right.<br><br>
         TOP ARTISTS - Our certified beauty artists are among the best. And we're not just saying that.<br><br>
         CLEAN & SAFE - Your health safety is our top priority. Our professional practices are 100%-guaranteed clean and sanitized.<br><br>
@@ -1139,11 +1213,16 @@
 
     <!-- Contact -->
     <div>
-      <h3 class="text-lg font-semibold gold-text mb-3">Contact Us</h3>
-      <p class="mb-2">Address: 2100 Alamo Rd A, Richardson, TX 75080</p>
-      <p class="mb-2">Email: nailslashes.spalatour4724@gmail.com</p>
-      <p class="mb-2">Website: <a href="https://spalatourdallas.com" class="text-[var(--gold)] hover:underline">spalatourdallas.com</a></p>
-      <p class="mb-4">Phone: (972) 381-1188</p>
+      <h3 class="text-base md:text-lg font-semibold gold-text mb-3">Contact Us</h3>
+      <p class="mb-2 text-xs md:text-sm">📍 Address: 2100 Alamo Rd A, # 101, Richardson, TX 75080</p>
+      <p class="mb-2 text-xs md:text-sm">📧 Email: Ghv290585@gmail.com</p>
+      <p class="mb-2 text-xs md:text-sm">🌐 Website: <a href="https://spalatourdallas.com" class="text-[var(--gold)] hover:underline">spalatourdallas.com</a></p>
+      <p class="mb-4 text-xs md:text-sm">📞 Phone: 469-668-1719</p>
+      <p class="mb-4 text-xs md:text-sm">⏰ Hours:<br>
+        Mon - Fri: 9:30am - 7:00pm<br>
+        Saturday: 9:00am - 7:00pm<br>
+        Sunday: 11:00am - 5:00pm
+      </p>
       
       <!-- QR Code -->
       <div class="mt-4">
@@ -1156,8 +1235,8 @@
 
     <!-- Google Maps -->
     <div>
-      <h3 class="text-lg font-semibold gold-text mb-3">Our Location</h3>
-      <div class="w-full h-64 rounded-lg overflow-hidden border-2 border-[var(--gold)]">
+      <h3 class="text-base md:text-lg font-semibold gold-text mb-3">Our Location</h3>
+      <div class="w-full h-48 md:h-64 rounded-lg overflow-hidden border-2 border-[var(--gold)]">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.392757197939!2d-96.7167044!3d32.9769033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c1f2559faa209%3A0x31abdebe3def6803!2s2100%20Alamo%20Rd%20A%2C%20Richardson%2C%20TX%2075080!5e0!3m2!1sen!2sus!4v1739577600000!5m2!1sen!2sus"
           width="100%" 
@@ -1169,7 +1248,7 @@
         </iframe>
       </div>
       <p class="mt-3 text-sm text-gray-400">
-        2100 Alamo Rd A, Richardson, TX 75080
+        2100 Alamo Rd A, # 101, Richardson, TX 75080
       </p>
     </div>
   </div>
@@ -1304,6 +1383,32 @@
         closePopup();
       }
     }, 12000); // Auto close after 12 seconds
+  });
+  
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+  
+  function closeMobileMenu() {
+    if (mobileMenu) {
+      mobileMenu.classList.add('hidden');
+    }
+  }
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      const isClickInside = mobileMenu.contains(event.target) || mobileMenuBtn.contains(event.target);
+      if (!isClickInside) {
+        closeMobileMenu();
+      }
+    }
   });
 </script>
 
