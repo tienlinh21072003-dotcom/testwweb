@@ -21,13 +21,25 @@
   <meta name="twitter:image" content="https://spalatourdallas.com/logo.jpg">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+    
     :root {
       --gold: #C6A664;
+      --gold-light: #D4B883;
+      --gold-dark: #B8941F;
+      --shadow-gold: rgba(198, 166, 100, 0.3);
     }
+    
     body {
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
       color: #fff;
       position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
     }
     
     /* Animated background pattern */
@@ -269,10 +281,12 @@
       transform: translateX(400px);
       transition: transform 0.5s ease-in-out;
       border: 2px solid rgba(255,255,255,0.2);
+      display: none;
     }
     
     .popup-notification.show {
       transform: translateX(0);
+      display: block;
     }
     
     .popup-close {
@@ -318,12 +332,16 @@
       z-index: 1001;
       transition: all 0.3s ease-in-out;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
+      display: none;
     }
     
     .center-popup.show {
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
+      visibility: visible;
+      display: block;
       pointer-events: auto;
     }
     
@@ -374,13 +392,335 @@
       background: rgba(0,0,0,0.7);
       z-index: 1000;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
       pointer-events: none;
+      display: none;
     }
     
     .popup-overlay.show {
       opacity: 1;
+      visibility: visible;
+      display: block;
       pointer-events: auto;
+    }
+    
+    /* Enhanced Header with Glass Morphism */
+    header {
+      background: transparent !important;
+      border-bottom: none;
+      box-shadow: none;
+    }
+    
+    header nav a {
+      color: white !important;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      font-weight: 500;
+    }
+    
+    header nav a:hover {
+      color: var(--gold) !important;
+      text-shadow: 0 0 50px rgba(198, 166, 100, 0.5);
+    }
+    
+    header img {
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    }
+    
+    /* Shimmer Effect for Gold Text */
+    .gold-text {
+      background: linear-gradient(
+        90deg,
+        var(--gold-dark) 0%,
+        var(--gold) 30%,
+        var(--gold-light) 50%,
+        var(--gold) 70%,
+        var(--gold-dark) 100%
+      );
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    @keyframes shimmer {
+      0% {
+        background-position: 0% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+    
+    /* Gold utility classes */
+    .gold-border {
+      border-color: var(--gold);
+    }
+    
+    .gold-bg {
+      background-color: var(--gold);
+    }
+    
+    /* Services Section Background */
+    #services {
+      background: linear-gradient(135deg, 
+        rgba(40, 30, 20, 0.95) 0%, 
+        rgba(60, 45, 30, 0.95) 50%, 
+        rgba(40, 30, 20, 0.95) 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(198, 166, 100, 0.2);
+    }
+    
+    #services h3 {
+      text-shadow: 0 2px 20px rgba(198, 166, 100, 0.5);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    #services h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      box-shadow: 0 0 10px var(--gold);
+    }
+    
+    /* Luxury Service Cards */
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, 
+        rgba(80, 60, 40, 0.4) 0%, 
+        rgba(60, 45, 30, 0.5) 100%);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(198, 166, 100, 0.3),
+        inset 0 1px 0 rgba(198, 166, 100, 0.1);
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(198, 166, 100, 0.3),
+        transparent
+      );
+      transition: left 0.5s;
+      z-index: 1;
+    }
+    
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(198, 166, 100, 0.1) 0%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+    }
+    
+    .service-card:hover::before {
+      left: 100%;
+    }
+    
+    .service-card:hover::after {
+      opacity: 1;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: linear-gradient(135deg, 
+        rgba(90, 70, 50, 0.6) 0%, 
+        rgba(70, 55, 40, 0.7) 100%);
+      box-shadow: 
+        0 20px 60px rgba(198, 166, 100, 0.4),
+        0 0 0 2px var(--gold),
+        0 0 40px rgba(198, 166, 100, 0.3),
+        inset 0 1px 0 rgba(198, 166, 100, 0.2);
+    }
+    
+    .service-card h4,
+    .service-card p {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .service-card p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .service-card .aspect-square {
+      background: linear-gradient(135deg, 
+        rgba(30, 20, 10, 0.6) 0%, 
+        rgba(50, 35, 20, 0.8) 100%);
+      border: 1px solid rgba(198, 166, 100, 0.2);
+      box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .service-card:hover .aspect-square {
+      border-color: rgba(198, 166, 100, 0.4);
+      box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.3),
+        0 4px 20px rgba(198, 166, 100, 0.3);
+    }
+    
+    /* Glowing Border Effect */
+    .glow-border {
+      position: relative;
+      border: 2px solid var(--gold);
+      box-shadow: 
+        0 0 20px rgba(198, 166, 100, 0.4),
+        inset 0 0 20px rgba(198, 166, 100, 0.1);
+    }
+    
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(
+        45deg,
+        var(--gold),
+        var(--gold-light),
+        var(--gold),
+        var(--gold-dark)
+      );
+      background-size: 400% 400%;
+      border-radius: inherit;
+      opacity: 0;
+      z-index: -1;
+      animation: glowRotate 3s ease-in-out infinite;
+      transition: opacity 0.3s;
+    }
+    
+    .glow-border:hover::before {
+      opacity: 0.7;
+    }
+    
+    @keyframes glowRotate {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    /* Luxury Button */
+    .luxury-btn {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      box-shadow: 
+        0 8px 24px rgba(198, 166, 100, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .luxury-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s;
+    }
+    
+    .luxury-btn:hover::before {
+      left: 100%;
+    }
+    
+    .luxury-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 32px rgba(198, 166, 100, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Elegant Section Background */
+    .elegant-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(198, 166, 100, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(198, 166, 100, 0.1);
+    }
+    
+    /* Gallery Image Enhancement */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 2px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(198, 166, 100, 0.1) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .gallery-item:hover {
+      border-color: var(--gold);
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 
+        0 20px 40px rgba(198, 166, 100, 0.3),
+        0 0 20px rgba(198, 166, 100, 0.2);
+    }
+    
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+    
+    .gallery-item img {
+      transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
     }
     
   </style>
@@ -413,7 +753,7 @@
 <div id="popupNotification" class="popup-notification">
   <button class="popup-close" onclick="closePopup()">&times;</button>
   <div class="popup-content">
-    <div class="popup-title">🌟 Welcome to Spa La Tour!</div>
+    <div class="popup-title">Welcome to Spa La Tour!</div>
     <div class="popup-message">
       Experience luxurious space and professional services. 
       Book now to receive special offers!
@@ -452,31 +792,33 @@
   <img src="biadep.png" 
        alt="Spa La Tour Hero" 
        class="absolute inset-0 w-full h-full object-cover floating-bg" />
-  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  <div class="absolute inset-0 bg-black bg-opacity-20"></div>
 
   <!-- Content -->
   <div class="relative z-10 max-w-2xl px-6" data-aos="fade-up">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 gold-text">Welcome to Spa La Tour</h1>
-    <p class="text-lg md:text-xl text-gray-100 mb-6">
-      Experience luxurious space, absolute relaxation with our dedicated & professional team.
-    </p>
+    <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 shadow-2xl">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 gold-text">Welcome to Spa La Tour</h1>
+      <p class="text-lg md:text-xl text-white mb-6">
+        Experience luxurious space, absolute relaxation with our dedicated & professional team.
+      </p>
     <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" 
-       class="px-6 py-3 rounded-lg gold-bg text-white font-semibold text-lg hover:opacity-90 transition">
+       class="luxury-btn px-8 py-4 rounded-lg text-white font-semibold text-lg inline-block">
        Book Now
     </a>
+    </div>
   </div>
 </section>
 
   <main class="max-w-6xl mx-auto p-6">
     <!-- HOME -->
-<section id="home" class="bg-white border gold-border rounded-lg p-8 shadow mb-10 section-glow" data-aos="fade-up">
+<section id="home" class="bg-white glow-border rounded-xl p-8 shadow-2xl mb-10 elegant-section" data-aos="fade-up">
   <div class="flex flex-col md:flex-row items-center gap-6">
     <div class="flex-1" data-aos="fade-right">
       <h2 class="text-4xl font-extrabold mb-2 gold-text">Welcome to Nail & Lashes Spa La Tour</h2>
       <p class="text-gray-700 mb-4">Luxurious design, professional staff. Open: Mon - Fri: 9:30am - 7:00pm</p>
       <div class="flex gap-3">
-        <a href="#services" class="px-4 py-2 rounded gold-bg text-white">View Prices</a>
-        <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="px-4 py-2 rounded gold-bg text-white"">Book Now</a>
+        <a href="#services" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold">View Prices</a>
+        <a href="https://duongnguyen1.glossgenius.com/" target="_blank" rel="noopener" class="luxury-btn px-6 py-3 rounded-lg text-white font-semibold">Book Now</a>
       </div>
     </div>
     <div class="w-64 h-40 bg-gray-100 rounded-lg flex items-center justify-center border gold-border" data-aos="zoom-in">
@@ -490,134 +832,146 @@
 
     <!-- SERVICES -->
     <section id="services" class="mb-12">
-      <h3 class="text-3xl font-semibold mb-6 gold-text text-center">Our Services</h3>
+      <h3 class="text-4xl font-bold mb-8 gold-text text-center">Our Premium Services</h3>
       
       <!-- First row - 4 items -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <a href="nail-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-          <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-            <img src="nail1.jpg" alt="Manicure" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+        <a href="nail-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up">
+          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+            <img src="nail1.jpg" alt="Manicure" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-2 gold-text">Manicure</h4>
-          <p class="text-sm text-gray-500">Professional manicure</p>
+          <h4 class="font-bold text-xl mb-2 gold-text">Manicure</h4>
+          <p class="text-sm">Professional manicure</p>
         </a>
         
-        <a href="pedicure-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-          <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-            <img src="nailchan.jpg" alt="Pedicure" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <a href="pedicure-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+            <img src="nailchan.jpg" alt="Pedicure" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-2 gold-text">Pedicure</h4>
-          <p class="text-sm text-gray-500">Relaxing pedicure</p>
+          <h4 class="font-bold text-xl mb-2 gold-text">Pedicure</h4>
+          <p class="text-sm">Relaxing pedicure</p>
         </a>
         
-        <a href="kids-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-          <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-            <img src="embe.jpg" alt="Kids Services" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <a href="kids-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+            <img src="embe.jpg" alt="Kids Services" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-2 gold-text">Kids Services</h4>
-          <p class="text-sm text-gray-500">Care for children</p>
+          <h4 class="font-bold text-xl mb-2 gold-text">Kids Services</h4>
+          <p class="text-sm">Care for children</p>
         </a>
         
-        <a href="nail-care-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-          <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-            <img src="duongmong.jpg" alt="Nail Care" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <a href="nail-care-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+            <img src="duongmong.jpg" alt="Nail Care" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="text-4xl" style="display: none;"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <h4 class="font-semibold text-lg mb-2 gold-text">Nail Care</h4>
-          <p class="text-sm text-gray-500">Deep nail care</p>
+          <h4 class="font-bold text-xl mb-2 gold-text">Nail Care</h4>
+          <p class="text-sm">Deep nail care</p>
         </a>
       </div>
       
       <!-- Second row - 3 centered items -->
       <div class="flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl">
-          <a href="hair-removal-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-            <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-              <img src="taylong.jpg" alt="Hair Removal" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+          <a href="hair-removal-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="400">
+            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+              <img src="taylong.jpg" alt="Hair Removal" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-semibold text-lg mb-2 gold-text">Hair Removal</h4>
-            <p class="text-sm text-gray-500">Hair removal therapy</p>
+            <h4 class="font-bold text-xl mb-2 gold-text">Hair Removal</h4>
+            <p class="text-sm">Hair removal therapy</p>
           </a>
           
-          <a href="eyelash-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-            <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-              <img src="noimi.jpg" alt="Eyelash Extensions" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <a href="eyelash-services.html" class="service-card p-6 border gold-border rounded-xl text-center group" data-aos="fade-up" data-aos-delay="500">
+            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+              <img src="noimi.jpg" alt="Eyelash Extensions" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-semibold text-lg mb-2 gold-text">Eyelash Extensions</h4>
-            <p class="text-sm text-gray-500">Professional eyelash service</p>
+            <h4 class="font-bold text-xl mb-2 gold-text">Eyelash Extensions</h4>
+            <p class="text-sm">Professional eyelash service</p>
           </a>
           
-          <a href="drinks-services.html" class="p-6 bg-white border gold-border rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 text-center group">
-            <div class="w-full aspect-square mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-              <img src="nen.jpg" alt="Free Drinks" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <a href="javascript:void(0)" onclick="openImage('drink.jpg')" class="service-card p-6 border gold-border rounded-xl text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="600">
+            <div class="relative w-full aspect-square mb-4 rounded-xl flex items-center justify-center overflow-hidden">
+              <img src="drink.jpg" alt="Drinks" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="text-4xl" style="display: none;"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <h4 class="font-semibold text-lg mb-2 gold-text">Free Drinks</h4>
-            <p class="text-sm text-gray-500">Fresh beverages</p>
+            <h4 class="font-bold text-xl mb-2 gold-text">Drinks</h4>
+            <p class="text-sm">Fresh beverages</p>
           </a>
         </div>
       </div>
+    </section>
 
     <!-- MENU -->
 <section id="menu" class="container mx-auto py-16 px-4" data-aos="fade-up">
-  <h2 class="text-3xl font-bold text-center gold-text mb-10">Service Price List</h2>
-  <div class="grid md:grid-cols-2 gap-8">
-    <div data-aos="zoom-in">
-      <img 
-        src="menu1.jpg" 
-        class="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 cursor-pointer" 
-        onclick="openImage(this.src)">
+  <h2 class="text-4xl font-bold text-center gold-text mb-12">Service Price List</h2>
+  <div class="grid md:grid-cols-2 gap-10">
+    <div data-aos="zoom-in" class="group">
+      <div class="glow-border rounded-2xl overflow-hidden">
+        <img 
+          src="menu1.jpg" 
+          class="w-full h-auto transform transition-all duration-500 hover:scale-110 cursor-pointer" 
+          onclick="openImage(this.src)">
+      </div>
     </div>
-    <div data-aos="zoom-in" data-aos-delay="200">
-      <img 
-        src="menu2.jpg" 
-        class="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 cursor-pointer" 
-        onclick="openImage(this.src)">
+    <div data-aos="zoom-in" data-aos-delay="200" class="group">
+      <div class="glow-border rounded-2xl overflow-hidden">
+        <img 
+          src="menu2.jpg" 
+          class="w-full h-auto transform transition-all duration-500 hover:scale-110 cursor-pointer" 
+          onclick="openImage(this.src)">
+      </div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery" class="container mx-auto py-16 px-4" data-aos="fade-up">
-  <h2 class="text-3xl font-bold text-center gold-text mb-10">Image Gallery</h2>
+  <h2 class="text-4xl font-bold text-center gold-text mb-12">Image Gallery</h2>
   
   <!-- Nail Art Gallery -->
-  <div class="mb-12">
-    <h3 class="text-2xl font-semibold gold-text mb-6 text-center">💅 Nail Art - Fingernails</h3>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail1.jpg')">
+  <div class="mb-16">
+    <h3 class="text-3xl font-semibold gold-text mb-8 text-center">Nail Art - Fingernails</h3>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail1.jpg')">
         <img src="nail1.jpg" alt="Nail Art 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail2.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail2.jpg')">
         <img src="nail2.jpg" alt="Nail Art 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 2</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail3.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail3.jpg')">
         <img src="nail3.jpg" alt="Nail Art 3" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 3</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail4.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail4.jpg')">
         <img src="nail4.jpg" alt="Nail Art 4" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 4</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail5.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail5.jpg')">
         <img src="nail5.jpg" alt="Nail Art 5" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 5</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail6.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail6.jpg')">
         <img src="nail6.jpg" alt="Nail Art 6" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 6</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail7.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail7.jpg')">
         <img src="nail7.jpg" alt="Nail Art 7" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 7</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail8.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail8.jpg')">
         <img src="nail8.jpg" alt="Nail Art 8" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 8</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail9.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail9.jpg')">
         <img src="nail9.jpg" alt="Nail Art 9" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 9</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('nail10.jpg')">
+      <div class="gallery-item aspect-square bg-gray-100" onclick="openImage('nail10.jpg')">
         <img src="nail10.jpg" alt="Nail Art 10" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 10</div>'">
       </div>
     </div>
@@ -627,35 +981,35 @@
   <div>
     <h3 class="text-2xl font-semibold gold-text mb-6 text-center">Pedicure - Toenails</h3>
     <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-1.jpg')">
-        <img src="pedicure-gallery-1.jpg" alt="Pedicure 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan1.jpg')">
+        <img src="chan1.jpg" alt="Pedicure 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 1</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-2.jpg')">
-        <img src="pedicure-gallery-2.jpg" alt="Pedicure 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 2</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan2.jpg')">
+        <img src="chan2.jpg" alt="Pedicure 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 2</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-3.jpg')">
-        <img src="pedicure-gallery-3.jpg" alt="Pedicure 3" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 3</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan3.jpg')">
+        <img src="chan3.jpg" alt="Pedicure 3" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 3</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-4.jpg')">
-        <img src="pedicure-gallery-4.jpg" alt="Pedicure 4" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 4</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan4.jpg')">
+        <img src="chan4.jpg" alt="Pedicure 4" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 4</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-5.jpg')">
-        <img src="pedicure-gallery-5.jpg" alt="Pedicure 5" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 5</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan5.jpg')">
+        <img src="chan5.jpg" alt="Pedicure 5" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 5</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-6.jpg')">
-        <img src="pedicure-gallery-6.jpg" alt="Pedicure 6" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 6</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan6.jpg')">
+        <img src="chan6.jpg" alt="Pedicure 6" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 6</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-7.jpg')">
-        <img src="pedicure-gallery-7.jpg" alt="Pedicure 7" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 7</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan7.jpg')">
+        <img src="chan7.jpg" alt="Pedicure 7" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 7</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-8.jpg')">
-        <img src="pedicure-gallery-8.jpg" alt="Pedicure 8" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 8</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan8.jpg')">
+        <img src="chan8.jpg" alt="Pedicure 8" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 8</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-9.jpg')">
-        <img src="pedicure-gallery-9.jpg" alt="Pedicure 9" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 9</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan9.jpg')">
+        <img src="chan9.jpg" alt="Pedicure 9" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 9</div>'">
       </div>
-      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('pedicure-gallery-10.jpg')">
-        <img src="pedicure-gallery-10.jpg" alt="Pedicure 10" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 10</div>'">
+      <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform" onclick="openImage('chan10.jpg')">
+        <img src="chan10.jpg" alt="Pedicure 10" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'>Image 10</div>'">
       </div>
     </div>
   </div>
@@ -786,10 +1140,10 @@
     <!-- Contact -->
     <div>
       <h3 class="text-lg font-semibold gold-text mb-3">Contact Us</h3>
-      <p class="mb-2">📍 Address: 2100 Alamo Rd A, Richardson, TX 75080</p>
-      <p class="mb-2">✉️ Email: nailslashes.spalatour4724@gmail.com</p>
-      <p class="mb-2">🌐 Website: <a href="https://spalatourdallas.com" class="text-[var(--gold)] hover:underline">spalatourdallas.com</a></p>
-      <p class="mb-4">📞 Phone: (972) 381-1188</p>
+      <p class="mb-2">Address: 2100 Alamo Rd A, Richardson, TX 75080</p>
+      <p class="mb-2">Email: nailslashes.spalatour4724@gmail.com</p>
+      <p class="mb-2">Website: <a href="https://spalatourdallas.com" class="text-[var(--gold)] hover:underline">spalatourdallas.com</a></p>
+      <p class="mb-4">Phone: (972) 381-1188</p>
       
       <!-- QR Code -->
       <div class="mt-4">
@@ -815,7 +1169,7 @@
         </iframe>
       </div>
       <p class="mt-3 text-sm text-gray-400">
-        📍 2100 Alamo Rd A, Richardson, TX 75080
+        2100 Alamo Rd A, Richardson, TX 75080
       </p>
     </div>
   </div>
